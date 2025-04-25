@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const persistToggle = document.getElementById('persistToggle');
     const saveBtn = document.getElementById('saveBtn');
     const feedback = document.getElementById('feedback');
+    const tabInfo = document.getElementById('tabInfo');
 
     if (!range || !valueLabel || !persistToggle || !saveBtn) {
         console.error('[DEBUG] Missing popup elements:', { range, valueLabel, persistToggle, saveBtn });
@@ -74,12 +75,23 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!feedback) {
         console.error('[DEBUG] Feedback div missing in DOM');
     }
+    if (!tabInfo) {
+        console.error('[DEBUG] Tab info div missing in DOM');
+    }
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         currentTab = tabs[0];
         currentOrigin = getOrigin(currentTab.url);
         console.log('[DEBUG] Current tab:', currentTab);
         console.log('[DEBUG] Current origin:', currentOrigin);
+        if (tabInfo && currentTab) {
+            // Remove protocol (http:// or https://) from the origin for display
+            let displayOrigin = '';
+            if (currentOrigin) {
+                displayOrigin = currentOrigin.replace(/^https?:\/\//, '');
+            }
+            tabInfo.textContent = displayOrigin;
+        }
         setSliderAndToggle(currentTab, currentOrigin);
     });
 

@@ -6,8 +6,8 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-            min-width: 260px;
-            min-height: 290px;
+            min-width: 320px;
+            min-height: 260px;
             margin: 0;
             display: flex;
             align-items: center;
@@ -59,6 +59,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            padding-bottom: 14px;
         }
         .svg-eye {
             width: 22px;
@@ -83,14 +84,16 @@
         }
         .toggle-row {
             width: 100%;
-            margin-top: 14px;
+            padding-top: 28px;
             display: flex;
             align-items: center;
             gap: 10px;
             justify-content: flex-start;
+            border-top: 1px solid #e5e5e5;
         }
         .toggle-label {
-            font-size: 0.98rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             color: #3a3a3a;
             display: flex;
             align-items: center;
@@ -139,8 +142,10 @@
         .save-row {
             width: 100%;
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: space-between;
             margin-top: 18px;
+            gap: 10px;
         }
         .save-btn {
             padding: 8px 22px;
@@ -161,15 +166,16 @@
             box-shadow: none;
         }
         .feedback {
-            margin-top: 8px;
             color: #3a86ff;
             font-size: 0.98rem;
             font-weight: 600;
             opacity: 0;
             transition: opacity 0.3s;
             min-height: 18px;
-            text-align: right;
-            width: 100%;
+            text-align: left;
+            width: 100px;
+            flex: 1 1 auto;
+            margin: 0;
         }
         .feedback.visible {
             opacity: 1;
@@ -261,6 +267,7 @@
             <input type="range" id="opacityRange" min="10" max="100" value="100">
             <span id="value">100</span>%
         </div>
+        <hr/>
         <div class="toggle-row">
             <label class="toggle-label" for="persistToggle">
                 <span>Keep opacity on page reloads</span>
@@ -271,9 +278,9 @@
             </label>
         </div>
         <div class="save-row">
+            <div id="feedback" class="feedback"></div>
             <button id="saveBtn" class="save-btn" disabled>Save</button>
         </div>
-        <div id="feedback" class="feedback"></div>
     </div>
     <script src="popup.js"></script>
 </body>

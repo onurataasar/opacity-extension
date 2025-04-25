@@ -10,9 +10,11 @@
             min-height: 260px;
             margin: 0;
             display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            justify-content: center;
             position: relative;
+            height: 100vh;
         }
         body::before {
             content: '';
@@ -26,7 +28,7 @@
             background: rgba(255,255,255,0.97);
             border-radius: 18px;
             box-shadow: 0 4px 18px rgba(60, 60, 100, 0.10);
-            padding: 26px 22px 22px 22px;
+            padding: 26px 22px 34px 22px;
             width: 100%;
             max-width: 330px;
             display: flex;
@@ -34,6 +36,7 @@
             align-items: center;
             position: relative;
             z-index: 1;
+            box-sizing: border-box;
         }
         .icon-header {
             margin-bottom: 8px;
@@ -260,6 +263,63 @@
             text-align: center;
             max-width: 100%;
         }
+        .footer {
+            width: 100%;
+            text-align: center;
+            font-size: 0.92rem;
+            color: #ffffff;
+            padding: 16px 0 16px 0;
+            letter-spacing: 0.02em;
+            background: transparent;
+            user-select: none;
+            margin-top: auto;
+        }
+        .footer-link {
+            color: #fefefe;
+            font-weight: 600;
+            text-decoration: underline dotted;
+            transition: color 0.2s;
+        }
+        .footer-link:hover {
+            color: #bde0fe;
+        }
+        .bmc-row {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        .bmc-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px 4px 10px;
+            background: linear-gradient(135deg, #5F7FFF 60%, #4361ee 100%);
+            color: #fff;
+            border-radius: 5px;
+            font-family: 'Cookie', cursive, Arial, sans-serif;
+            font-size: 1.01rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 1px 4px rgba(58,134,255,0.10);
+            border: 1.5px solid #000;
+            transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+            min-height: 28px;
+        }
+        .bmc-btn:hover {
+            background: linear-gradient(135deg, #4361ee 80%, #5F7FFF 100%);
+            color: #FFDD00;
+            border-color: #FFDD00;
+        }
+        .bmc-coffee svg {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bmc-text {
+            color: #fff;
+            font-family: inherit;
+            letter-spacing: 0.01em;
+        }
     </style>
 </head>
 <body>
@@ -292,6 +352,25 @@
             <button id="saveBtn" class="save-btn" disabled>Save</button>
         </div>
     </div>
+    <footer class="footer">
+        <div class="bmc-row">
+            <a href="https://buymeacoffee.com/onurataasa9" target="_blank" rel="noopener noreferrer" class="bmc-btn">
+              <span class="bmc-coffee">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+                  <rect x="2" y="8" width="15" height="8" rx="4" fill="#FFDD00" stroke="#222" stroke-width="1.5"/>
+                  <rect x="4.5" y="10.5" width="10" height="3" rx="1.5" fill="#fff" fill-opacity=".5"/>
+                  <path d="M17 11h2a2 2 0 010 4h-2" stroke="#222" stroke-width="1.5" fill="none"/>
+                  <path d="M7 6s-.5-1 .5-2" stroke="#222" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <path d="M10 6s-.5-1 .5-2" stroke="#222" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <path d="M13 6s-.5-1 .5-2" stroke="#222" stroke-width="1" fill="none" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="bmc-text">Buy me a coffee</span>
+            </a>
+          </div>
+          2025 &copy; <a href="https://github.com/onurataasar" target="_blank" rel="noopener noreferrer" class="footer-link">Onur Ata Asar</a>
+    </footer>
+   
     <script src="popup.js"></script>
 </body>
 </html>

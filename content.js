@@ -14,3 +14,23 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     // Return true to indicate async response if needed
     return true;
 });
+
+function getOrigin(url) {
+    try {
+        const u = new URL(url);
+        return u.origin;
+    } catch {
+        return null;
+    }
+}
+
+// On content script load, check for persisted opacity preference
+(function() {
+    const origin = getOrigin(window.location.href);
+    if (!origin) return;
+    chrome.storage.local.get([`persist_${origin}`, `opacity_${origin}`], function(data) {
+        if (data[`persist_${origin}`] && data[`opacity_${origin}`] !== undefined) {
+            document.body.style.opacity = data[`opacity_${origin}`];
+        }
+    });
+})();

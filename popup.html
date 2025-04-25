@@ -7,12 +7,11 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             min-width: 260px;
-            min-height: 200px;
+            min-height: 290px;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Subtle pattern overlay */
             position: relative;
         }
         body::before {
@@ -81,6 +80,99 @@
             font-weight: bold;
             color: #3a86ff;
             margin-left: 8px;
+        }
+        .toggle-row {
+            width: 100%;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+        .toggle-label {
+            font-size: 0.98rem;
+            color: #3a3a3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 38px;
+            height: 22px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e6eaf2;
+            border-radius: 22px;
+            transition: background 0.2s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background: linear-gradient(135deg,#3a86ff 60%,#4361ee 100%);
+            border-radius: 50%;
+            transition: transform 0.2s, background 0.2s;
+        }
+        input:checked + .slider {
+            background: #bde0fe;
+        }
+        input:checked + .slider:before {
+            transform: translateX(16px);
+            background: linear-gradient(135deg,#4361ee 80%,#3a86ff 100%);
+        }
+        .save-row {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 18px;
+        }
+        .save-btn {
+            padding: 8px 22px;
+            background: linear-gradient(135deg, #3a86ff 60%, #4361ee 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(58,134,255,0.10);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .save-btn:disabled {
+            background: #e6eaf2;
+            color: #b0b0b0;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .feedback {
+            margin-top: 8px;
+            color: #3a86ff;
+            font-size: 0.98rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            min-height: 18px;
+            text-align: right;
+            width: 100%;
+        }
+        .feedback.visible {
+            opacity: 1;
         }
         input[type=range] {
             -webkit-appearance: none;
@@ -169,6 +261,19 @@
             <input type="range" id="opacityRange" min="10" max="100" value="100">
             <span id="value">100</span>%
         </div>
+        <div class="toggle-row">
+            <label class="toggle-label" for="persistToggle">
+                <span>Keep opacity on page reloads</span>
+                <span class="switch">
+                    <input type="checkbox" id="persistToggle">
+                    <span class="slider"></span>
+                </span>
+            </label>
+        </div>
+        <div class="save-row">
+            <button id="saveBtn" class="save-btn" disabled>Save</button>
+        </div>
+        <div id="feedback" class="feedback"></div>
     </div>
     <script src="popup.js"></script>
 </body>
